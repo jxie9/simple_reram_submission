@@ -1,0 +1,137 @@
+* NGSPICE file created from Final_top_wrapper.ext - technology: sky130B
+
+.subckt sky130_fd_pr__res_generic_po_4WEV9M a_n100_n595# a_n100_165#
+X0 a_n100_165# a_n100_n595# sky130_fd_pr__res_generic_po w=1 l=1.65
+.ends
+
+.subckt sky130_fd_pr__res_generic_po_4LLJEK a_n100_1320# a_n100_n1750#
+X0 a_n100_1320# a_n100_n1750# sky130_fd_pr__res_generic_po w=1 l=13.2
+.ends
+
+.subckt vDivider_02 VCC Y VSS
+XR1 Y VSS sky130_fd_pr__res_generic_po_4WEV9M
+XR3 VCC Y sky130_fd_pr__res_generic_po_4LLJEK
+.ends
+
+.subckt sky130_fd_pr_reram__reram_cell_X TE BE
+X0 TE BE sky130_fd_pr_reram__reram_cell area_ox=1
+.ends
+
+.subckt sky130_fd_pr__nfet_g5v0d10v5_9YEQ2B a_50_n700# a_n242_n922# a_n108_n700# a_n50_n788#
+X0 a_50_n700# a_n50_n788# a_n108_n700# a_n242_n922# sky130_fd_pr__nfet_g5v0d10v5 ad=2.03 pd=14.58 as=2.03 ps=14.58 w=7 l=0.5
+.ends
+
+.subckt x1T1R BL WL SL VSS
+XXR1 BL XR1/BE sky130_fd_pr_reram__reram_cell_X
+XXM1 XR1/BE VSS SL WL sky130_fd_pr__nfet_g5v0d10v5_9YEQ2B
+.ends
+
+.subckt x2x2crossbar BL2 WL2 WL1 BL1 VSS SL2 SL1
+Xx1 BL1 WL1 SL1 VSS x1T1R
+Xx2 BL2 WL1 SL2 VSS x1T1R
+Xx3 BL1 WL2 SL1 VSS x1T1R
+Xx4 BL2 WL2 SL2 VSS x1T1R
+.ends
+
+.subckt x4x4crossbar BL1 BL2 BL3 BL4 WL1 WL2 WL3 WL4 SL1 SL2 SL3 SL4 VSS
+Xx1 BL2 WL2 WL1 BL1 VSS SL2 SL1 x2x2crossbar
+Xx2 BL2 WL4 WL3 BL1 VSS SL2 SL1 x2x2crossbar
+Xx3 BL4 WL2 WL1 BL3 VSS SL4 SL3 x2x2crossbar
+Xx4 BL4 WL4 WL3 BL3 VSS SL4 SL3 x2x2crossbar
+.ends
+
+.subckt sky130_fd_pr__res_generic_po_NSB5VY a_n100_n2930# a_n100_2500#
+X0 a_n100_2500# a_n100_n2930# sky130_fd_pr__res_generic_po w=1 l=25
+.ends
+
+.subckt sky130_fd_pr__res_generic_po_FHUZEF a_n100_n1230# a_n100_800#
+X0 a_n100_800# a_n100_n1230# sky130_fd_pr__res_generic_po w=1 l=8
+.ends
+
+.subckt vDivider_25 VCC Y VSS
+XR1 Y VSS sky130_fd_pr__res_generic_po_NSB5VY
+XR3 Y VCC sky130_fd_pr__res_generic_po_FHUZEF
+.ends
+
+.subckt sky130_fd_pr__res_generic_po_55P4HT a_n100_n2080# a_n100_1650#
+X0 a_n100_1650# a_n100_n2080# sky130_fd_pr__res_generic_po w=1 l=16.5
+.ends
+
+.subckt sky130_fd_pr__res_generic_po_882S6N a_n100_n595# a_n100_165#
+X0 a_n100_165# a_n100_n595# sky130_fd_pr__res_generic_po w=1 l=1.65
+.ends
+
+.subckt vDivider_3 VCC Y VSS
+Xsky130_fd_pr__res_generic_po_55P4HT_0 Y VSS sky130_fd_pr__res_generic_po_55P4HT
+Xsky130_fd_pr__res_generic_po_882S6N_0 Y VCC sky130_fd_pr__res_generic_po_882S6N
+.ends
+
+.subckt sky130_fd_pr__nfet_g5v0d10v5_6XHARQ a_n108_n75# a_n50_n163# a_n242_n297# a_50_n75#
+X0 a_50_n75# a_n50_n163# a_n108_n75# a_n242_n297# sky130_fd_pr__nfet_g5v0d10v5 ad=0.2175 pd=2.08 as=0.2175 ps=2.08 w=0.75 l=0.5
+.ends
+
+.subckt sky130_fd_pr__pfet_g5v0d10v5_7EBZY6 a_50_n150# a_n50_n247# a_n108_n150# w_n308_n447#
+X0 a_50_n150# a_n50_n247# a_n108_n150# w_n308_n447# sky130_fd_pr__pfet_g5v0d10v5 ad=0.435 pd=3.58 as=0.435 ps=3.58 w=1.5 l=0.5
+.ends
+
+.subckt Inverter VDD Vin Vout VSS
+XXM1 VSS Vin VSS Vout sky130_fd_pr__nfet_g5v0d10v5_6XHARQ
+XXM2 Vout Vin VDD VDD sky130_fd_pr__pfet_g5v0d10v5_7EBZY6
+.ends
+
+.subckt Buffer Vout Vin VDD VSS
+Xx1 VDD Vin x2/Vin VSS Inverter
+Xx2 VDD x2/Vin Vout VSS Inverter
+.ends
+
+.subckt TransmissionGate SP VDD Out In VSS SN
+XXM1 In SN VSS Out sky130_fd_pr__nfet_g5v0d10v5_6XHARQ
+XXM2 Out SP In VDD sky130_fd_pr__pfet_g5v0d10v5_7EBZY6
+.ends
+
+.subckt x2-1MUX S A B OUT VDD VSS
+Xx1 x2/SN VDD OUT A VSS S TransmissionGate
+Xx2 S VDD OUT B VSS x2/SN TransmissionGate
+Xx3 VDD S x2/SN VSS Inverter
+.ends
+
+.subckt x4LineWordInput VDD WL_IN1 WL_LA_IN2 WL_LA_IN3 Write_Select WL_IN2 Form_Voltage
++ WL_LA_IN1 Write_Voltage WL_LA_IN4 WL_IN3 WL_IN4 VSS
+Xx1 WL_IN1 WL_LA_IN1 x9/OUT VSS Buffer
+Xx2 WL_IN2 WL_LA_IN2 x9/OUT VSS Buffer
+Xx3 WL_IN3 WL_LA_IN3 x9/OUT VSS Buffer
+Xx4 WL_IN4 WL_LA_IN4 x9/OUT VSS Buffer
+Xx9 Write_Select Write_Voltage Form_Voltage x9/OUT VDD VSS x2-1MUX
+.ends
+
+.subckt x1LineBitInput VDD MAC_Read BL_LA_IN Write_Form_select VDD_MUX BL_IN VSS
+Xx2 Write_Form_select x2/A MAC_Read BL_IN VDD VSS x2-1MUX
+Xx3 x2/A BL_LA_IN VDD_MUX VSS Buffer
+.ends
+
+.subckt x4LineBitInput VDD v3 BL_LA_IN1 Write_Form_Select v02 BL_IN1 BL_LA_IN2 BL_IN2
++ BL_LA_IN3 BL_LA_IN4 Write_Select v25 BL_IN3 BL_IN4 VSS
+Xx1 VDD v02 BL_LA_IN1 Write_Form_Select x9/OUT BL_IN1 VSS x1LineBitInput
+Xx2 VDD v02 BL_LA_IN2 Write_Form_Select x9/OUT BL_IN2 VSS x1LineBitInput
+Xx3 VDD v02 BL_LA_IN3 Write_Form_Select x9/OUT BL_IN3 VSS x1LineBitInput
+Xx4 VDD v02 BL_LA_IN4 Write_Form_Select x9/OUT BL_IN4 VSS x1LineBitInput
+Xx9 Write_Select v25 v3 x9/OUT VDD VSS x2-1MUX
+.ends
+
+.subckt Final_top_wrapper vccd2_pin vdda2_pin Write_select_in BL_LA_IN1 BL_LA_IN2
++ BL_LA_IN3 BL_LA_IN4 WL_LA_IN1 WL_LA_IN2 WL_LA_IN3 WL_LA_IN4 SL1_out SL3_out SL4_out
++ Write_form_select_in SL2_out vssa2_pin vssd2_pin
+XvDivider_02_0 vccd2_pin vDivider_02_0/Y vssd2_pin vDivider_02
+X4x4crossbar_0 4x4crossbar_0/BL1 4x4crossbar_0/BL2 4x4crossbar_0/BL3 4x4crossbar_0/BL4
++ 4x4crossbar_0/WL1 4x4crossbar_0/WL2 4x4crossbar_0/WL3 4x4crossbar_0/WL4 SL1_out
++ SL2_out SL3_out SL4_out vssa2_pin x4x4crossbar
+XvDivider_25_0 vdda2_pin vDivider_25_0/Y vssa2_pin vDivider_25
+XvDivider_3_0 vdda2_pin vDivider_3_0/Y vssa2_pin vDivider_3
+X4LineWordInput_0 vdda2_pin 4x4crossbar_0/WL1 WL_LA_IN2 WL_LA_IN3 Write_select_in
++ 4x4crossbar_0/WL2 vDivider_25_0/Y WL_LA_IN1 vDivider_25_0/Y WL_LA_IN4 4x4crossbar_0/WL3
++ 4x4crossbar_0/WL4 vssa2_pin x4LineWordInput
+X4LineBitInput_0 vdda2_pin vDivider_3_0/Y BL_LA_IN1 Write_form_select_in vDivider_02_0/Y
++ 4x4crossbar_0/BL1 BL_LA_IN2 4x4crossbar_0/BL2 BL_LA_IN3 BL_LA_IN4 Write_select_in
++ vDivider_25_0/Y 4x4crossbar_0/BL3 4x4crossbar_0/BL4 vssa2_pin x4LineBitInput
+.ends
+
