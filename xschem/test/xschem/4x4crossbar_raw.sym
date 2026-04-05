@@ -1,0 +1,50 @@
+v {xschem version=3.4.5 file_version=1.2}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+T {@symname} -85.5 -6 0 0 0.3 0.3 {}
+T {@name} 135 -142 0 0 0.2 0.2 {}
+L 4 -130 -130 130 -130 {}
+L 4 -130 130 130 130 {}
+L 4 -130 -130 -130 130 {}
+L 4 130 -130 130 130 {}
+B 5 147.5 -122.5 152.5 -117.5 {name=vssa_raw dir=inout}
+L 7 130 -120 150 -120 {}
+T {vssa_raw} 125 -124 0 1 0.2 0.2 {}
+B 5 147.5 -102.5 152.5 -97.5 {name=BL1_raw dir=inout}
+L 7 130 -100 150 -100 {}
+T {BL1_raw} 125 -104 0 1 0.2 0.2 {}
+B 5 147.5 -82.5 152.5 -77.5 {name=BL2_raw dir=inout}
+L 7 130 -80 150 -80 {}
+T {BL2_raw} 125 -84 0 1 0.2 0.2 {}
+B 5 147.5 -62.5 152.5 -57.5 {name=BL3_raw dir=inout}
+L 7 130 -60 150 -60 {}
+T {BL3_raw} 125 -64 0 1 0.2 0.2 {}
+B 5 147.5 -42.5 152.5 -37.5 {name=BL4_raw dir=inout}
+L 7 130 -40 150 -40 {}
+T {BL4_raw} 125 -44 0 1 0.2 0.2 {}
+B 5 147.5 -22.5 152.5 -17.5 {name=WL1_raw dir=inout}
+L 7 130 -20 150 -20 {}
+T {WL1_raw} 125 -24 0 1 0.2 0.2 {}
+B 5 147.5 -2.5 152.5 2.5 {name=WL2_raw dir=inout}
+L 7 130 0 150 0 {}
+T {WL2_raw} 125 -4 0 1 0.2 0.2 {}
+B 5 147.5 17.5 152.5 22.5 {name=WL3_raw dir=inout}
+L 7 130 20 150 20 {}
+T {WL3_raw} 125 16 0 1 0.2 0.2 {}
+B 5 147.5 37.5 152.5 42.5 {name=WL4_raw dir=inout}
+L 7 130 40 150 40 {}
+T {WL4_raw} 125 36 0 1 0.2 0.2 {}
+B 5 147.5 57.5 152.5 62.5 {name=SL1_raw dir=inout}
+L 7 130 60 150 60 {}
+T {SL1_raw} 125 56 0 1 0.2 0.2 {}
+B 5 147.5 77.5 152.5 82.5 {name=SL2_raw dir=inout}
+L 7 130 80 150 80 {}
+T {SL2_raw} 125 76 0 1 0.2 0.2 {}
+B 5 147.5 97.5 152.5 102.5 {name=SL3_raw dir=inout}
+L 7 130 100 150 100 {}
+T {SL3_raw} 125 96 0 1 0.2 0.2 {}
+B 5 147.5 117.5 152.5 122.5 {name=SL4_raw dir=inout}
+L 7 130 120 150 120 {}
+T {SL4_raw} 125 116 0 1 0.2 0.2 {}
